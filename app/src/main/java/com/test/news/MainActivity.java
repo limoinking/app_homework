@@ -36,7 +36,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
     protected void initData() {
         super.initData();
         sendRequest("top");
-        //initLocalData();//次数用完可请求本地json数据
+        initLocalData();//次数用完可请求本地json数据
     }
 
     private void initLocalData() {
@@ -101,7 +101,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
 
     private void sendRequest(String type) {
 
-        OkHttpUtil.sendHttpRequest(Constants.JUHE_URL + "?type=" + type + "&key=" + Constants.JUHE_KEY, new Callback() {
+        OkHttpUtil.sendHttpRequest(Constants.JUHE_URL + "?type=" + type + "&key=" + Constants.JUHE_KEY + "&page=" + 3, new Callback() {
             @Override
             public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                 if (response.isSuccessful()) {
@@ -116,6 +116,13 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
                     }
                     if (news.getResult() != null) {
                         newList.clear();
+                        newList.addAll(news.getResult().getData());
+                        newList.addAll(news.getResult().getData());
+                        newList.addAll(news.getResult().getData());
+                        newList.addAll(news.getResult().getData());
+                        newList.addAll(news.getResult().getData());
+                        newList.addAll(news.getResult().getData());
+                        newList.addAll(news.getResult().getData());
                         newList.addAll(news.getResult().getData());
                         handler.sendEmptyMessage(1);
                     }
